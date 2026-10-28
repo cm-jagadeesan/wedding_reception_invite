@@ -381,7 +381,7 @@ body{background:radial-gradient(ellipse 75% 28% at 50% 0%,#30365b 0%,#151c37 65%
 <h1 class="name">Karthik Pramod</h1>
 <p class="join">with</p>
 <h2 class="name">Deepa Prabha</h2>
-<p class="groom-line">D/o P V Pradeep and Bindu Pradeep<br/>Panapparambil House, perinjanam, Thrissur</p>
+<p class="groom-line">D/o P V Pradeep and Bindu Pradeep<br/>Panapparambil House, Perinjanam, Thrissur</p>
 </div>
 <img alt="Karthik Pramod and Deepa Prabha" class="couple" src="images/couple.png"/>
 </section>
@@ -420,7 +420,7 @@ body{background:radial-gradient(ellipse 75% 28% at 50% 0%,#30365b 0%,#151c37 65%
   </div>
 </section>
 <section class="words">
-<p class="lead">You are cordially invited with your family to witness and bless the bridal couple and attend the subsequent marriage Reception. We seek your valued presence.</p>
+<p class="lead">We cordially invite your esteemed presence with family on the occasion of the Wedding Reception of our son.</p>
 <hr class="rule"/>
 <p class="with-love">With Love,</p>
 <p class="hosts">Dr. Pramod Pavithran &amp; Neetha Balakrishnan</p>
@@ -428,12 +428,12 @@ body{background:radial-gradient(ellipse 75% 28% at 50% 0%,#30365b 0%,#151c37 65%
 <div class="phone-row">
 <span class="label">Mob</span>
 <span class="phone" id="phone">94 47 10 66 63</span>
-<button class="btn" id="copy-phone" type="button">Copy number</button>
-<a class="btn" href="tel:+919447106663">Call</a>
+<button class="btn icon-btn" id="copy-phone" type="button" aria-label="Copy number" title="Copy number"><svg class="i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg><svg class="i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+<a class="btn icon-btn" href="tel:+919447106663" aria-label="Call" title="Call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 6.1 6.1l1.4-2.3L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg></a>
 </div>
-</section>
 <p class="closing">See you there</p>
 <p class="compliments">Best Compliments From<br/><strong>Gayathri Pramod</strong></p>
+</section>
 </div>
 <script>
 (function () {
@@ -471,8 +471,12 @@ body{background:radial-gradient(ellipse 75% 28% at 50% 0%,#30365b 0%,#151c37 65%
   }
   btn.addEventListener('click', function () {
     var text = '9447106663';
-    var ok = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy number'; }, 1800); };
-    var fail = function () { selectPhone(); btn.textContent = 'Number selected'; setTimeout(function () { btn.textContent = 'Copy number'; }, 1800); };
+    var flash = function (label) {
+      btn.classList.add('done'); btn.setAttribute('aria-label', label); btn.title = label;
+      setTimeout(function () { btn.classList.remove('done'); btn.setAttribute('aria-label', 'Copy number'); btn.title = 'Copy number'; }, 1800);
+    };
+    var ok = function () { flash('Copied'); };
+    var fail = function () { selectPhone(); flash('Number selected'); };
     try {
       navigator.clipboard.writeText(text).then(ok, fail);
     } catch (e) { fail(); }
@@ -907,6 +911,13 @@ body { font-family: var(--font-text); font-size: 20px; letter-spacing: normal; }
 .count-num { font-family: var(--font-script); font-size: clamp(40px, 11vw, 58px); line-height: 1.1; }
 .count-unit { font-family: var(--font-text); font-size: 13px; letter-spacing: .16em; font-weight: 600; }
 .btn { font-family: var(--font-text); font-size: 17px; font-weight: 600; letter-spacing: .04em; text-transform: none; }
+.words { background: rgba(13,22,46,.55) !important; padding-bottom: 44px !important; margin-bottom: 40px; }
+.words .closing { margin-top: 30px; padding-bottom: 0; }
+.words .compliments { margin: 0; }
+.icon-btn { width: 48px; height: 48px; padding: 0 !important; border-radius: 50% !important; }
+.icon-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn .i-done, .icon-btn.done .i-copy { display: none; }
+.icon-btn.done .i-done { display: block; }
 .with-love { font-family: var(--font-script); font-size: 40px; }
 .closing { font-family: var(--font-script); font-size: 34px; }
 @media(max-width:559px) { .name { font-size: clamp(32px, 8vw, 72px) !important; } }
